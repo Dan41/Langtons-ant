@@ -75,7 +75,7 @@ public class LangtonsAnt extends Application {
 		root.getChildren().add(text);
 
 		goUp = new Timeline(
-	        new KeyFrame(Duration.seconds(time), event -> {
+	        	new KeyFrame(Duration.seconds(time), event -> {
 	        		changeColor();
 	        		
 		        	ant.setLayoutY(YPos - 10);
@@ -92,36 +92,36 @@ public class LangtonsAnt extends Application {
 		    			allStop();
 		    		    	goLeft.play();
 		    		}
-		    })
+			})
 		);
 		goUp.setAutoReverse(true);
 		goUp.setCycleCount(1);
 		
 		goRight = new Timeline(
 		        new KeyFrame(Duration.seconds(time), event -> {
-		        		changeColor();
+		        	changeColor();
 		        		
-			        	ant.setLayoutX(XPos + 10);
-			        	XPos += 10;
+			        ant.setLayoutX(XPos + 10);
+			        XPos += 10;
 			        	
-			        	moves++;
-			        	text.setText("Moves: " + Integer.toString(moves));
+			        moves++;
+			        text.setText("Moves: " + Integer.toString(moves));
 			        	
-			        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-			    			allStop();
-			    		    goDown.play();
-			    		}
-			    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-			    			allStop();
-			    		    	goUp.play();
-			    		}
+			        if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
+			    		allStop();
+			    		goDown.play();
+			    	}
+			    	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
+			    		allStop();
+			    		goUp.play();
+			    	}
 			    })
 			);
 		goRight.setAutoReverse(true);
 		goRight.setCycleCount(1);
 			
 		goDown = new Timeline(
-		    new KeyFrame(Duration.seconds(time), event -> {
+			new KeyFrame(Duration.seconds(time), event -> {
 		    		changeColor();
 		        		
 		        	ant.setLayoutY(YPos + 10);
@@ -138,7 +138,7 @@ public class LangtonsAnt extends Application {
 		   			allStop();
 		    		    	goRight.play();
 		    		}
-		    })
+		    	})
 		);
 		goDown.setAutoReverse(true);
 		goDown.setCycleCount(1);
@@ -147,7 +147,7 @@ public class LangtonsAnt extends Application {
 			new KeyFrame(Duration.seconds(time), event -> {
 	        		changeColor();
 			        		
-		       	ant.setLayoutX(XPos - 10);
+		       		ant.setLayoutX(XPos - 10);
 		        	XPos -= 10;
 				        	
 		        	moves++;
@@ -161,7 +161,7 @@ public class LangtonsAnt extends Application {
 			    		allStop();
 			    	    	goDown.play();
 				}
-		    })
+		    	})
 		);
 		goDown.setAutoReverse(true);
 		goDown.setCycleCount(1);
