@@ -5,10 +5,12 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -26,9 +28,11 @@ public class LangtonsAnt extends Application {
 	private String white = "0xffffffff";
 	private String black = "0x000000ff";
 	
-	private double time = 0.0005;
+	private double time = 0.0001;
 	
 	private int moves = 0;
+	
+	private Text text;
 	
 	private Timeline goUp;
 	private Timeline goRight;
@@ -44,6 +48,8 @@ public class LangtonsAnt extends Application {
 		}
 		catch(Exception e) {}
 	}
+	
+	private boolean startStatus = false;
 	
 	private class Ant extends StackPane {
 		public Ant() {
@@ -90,7 +96,6 @@ public class LangtonsAnt extends Application {
 		);
 		goUp.setAutoReverse(true);
 		goUp.setCycleCount(1);
-		goUp.play();
 		
 		goRight = new Timeline(
 		        new KeyFrame(Duration.seconds(time), event -> {
@@ -112,54 +117,54 @@ public class LangtonsAnt extends Application {
 			    		}
 			    })
 			);
-			goRight.setAutoReverse(true);
-			goRight.setCycleCount(1);
+		goRight.setAutoReverse(true);
+		goRight.setCycleCount(1);
 			
 		goDown = new Timeline(
-		        new KeyFrame(Duration.seconds(time), event -> {
-		        		changeColor();
+		    new KeyFrame(Duration.seconds(time), event -> {
+		    		changeColor();
 		        		
-			        	ant.setLayoutY(YPos + 10);
-			        	YPos += 10;
+		        	ant.setLayoutY(YPos + 10);
+		        	YPos += 10;
 			        	
-			        	moves++;
-			        	text.setText("Moves: " + Integer.toString(moves));
+		        	moves++;
+		        	text.setText("Moves: " + Integer.toString(moves));
 			        	
-			        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-			    			allStop();
-			    		    goLeft.play();
-			    		}
-			    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-			   			allStop();
-			    		    	goRight.play();
-			    		}
-			    })
-			);
-			goDown.setAutoReverse(true);
-			goDown.setCycleCount(1);
+		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
+		    			allStop();
+		    		    goLeft.play();
+		    		}
+		    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
+		   			allStop();
+		    		    	goRight.play();
+		    		}
+		    })
+		);
+		goDown.setAutoReverse(true);
+		goDown.setCycleCount(1);
 			
-			goLeft = new Timeline(
-			        new KeyFrame(Duration.seconds(time), event -> {
-			        		changeColor();
+		goLeft = new Timeline(
+			new KeyFrame(Duration.seconds(time), event -> {
+	        		changeColor();
 			        		
-				        	ant.setLayoutX(XPos - 10);
-				        	XPos -= 10;
+		       	ant.setLayoutX(XPos - 10);
+		        	XPos -= 10;
 				        	
-				        	moves++;
-				        	text.setText("Moves: " + Integer.toString(moves));
+		        	moves++;
+		        	text.setText("Moves: " + Integer.toString(moves));
 				        	
-				        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-				    			allStop();
-				    		    goUp.play();
-				    		}
-				    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-				    			allStop();
-				    		    	goDown.play();
-				    		}
-				    })
-				);
-				goDown.setAutoReverse(true);
-				goDown.setCycleCount(1);
+		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
+		    			allStop();
+		    		    goUp.play();
+		    		}
+		    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
+			    		allStop();
+			    	    	goDown.play();
+				}
+		    })
+		);
+		goDown.setAutoReverse(true);
+		goDown.setCycleCount(1);
 	}
 
 	private Parent createContent() {
@@ -178,12 +183,18 @@ public class LangtonsAnt extends Application {
 			}
 		}
 		
+		text = new Text("Press space to start simulation");
+		text.setFont(Font.font(18));
+		text.setLayoutY(200);
+		text.setLayoutX(223);
+		root.getChildren().add(text);
+		
 		move();
 		
 		return root;
 	}
 	
-	private class BackGround extends StackPane{
+	private class BackGround extends StackPane {
 		Rectangle rect = new Rectangle(10, 10);
 		public BackGround() {
 			rect.setFill(Color.WHITE);
@@ -201,7 +212,18 @@ public class LangtonsAnt extends Application {
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setScene(new Scene(createContent()));
+		Scene scene = new Scene(createContent());
+		
+		scene.setOnKeyPressed(event -> {
+			if (event.getCode().equals(KeyCode.SPACE)) {
+				root.getChildren().remove(text);
+				if (!startStatus)
+					goUp.play();
+					startStatus = true;
+			}
+		});
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Langton's ant simulation");
 		primaryStage.show();
 	}
 
