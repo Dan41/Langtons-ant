@@ -70,12 +70,8 @@ public class LangtonsAnt extends Application {
 
 		goUp = new Timeline(
 	        new KeyFrame(Duration.seconds(time), event -> {
-	        		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-		     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
-		        	}
-		        	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-		        		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
-		        	}
+	        		changeColor();
+	        		
 		        	ant.setLayoutY(YPos - 10);
 		        	YPos -= 10;
 		        	
@@ -98,12 +94,8 @@ public class LangtonsAnt extends Application {
 		
 		goRight = new Timeline(
 		        new KeyFrame(Duration.seconds(time), event -> {
-		        		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-			     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
-			        	}
-			        	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-			        		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
-			        	}
+		        		changeColor();
+		        		
 			        	ant.setLayoutX(XPos + 10);
 			        	XPos += 10;
 			        	
@@ -125,12 +117,8 @@ public class LangtonsAnt extends Application {
 			
 		goDown = new Timeline(
 		        new KeyFrame(Duration.seconds(time), event -> {
-		        		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-			     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
-			        	}
-			        	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-			        		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
-			        	}
+		        		changeColor();
+		        		
 			        	ant.setLayoutY(YPos + 10);
 			        	YPos += 10;
 			        	
@@ -152,12 +140,8 @@ public class LangtonsAnt extends Application {
 			
 			goLeft = new Timeline(
 			        new KeyFrame(Duration.seconds(time), event -> {
-			        		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-				     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
-				        	}
-				        	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
-				        		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
-				        	}
+			        		changeColor();
+			        		
 				        	ant.setLayoutX(XPos - 10);
 				        	XPos -= 10;
 				        	
@@ -205,6 +189,15 @@ public class LangtonsAnt extends Application {
 			rect.setFill(Color.WHITE);
 			getChildren().add(rect);
 		}
+	}
+	
+	public void changeColor() {
+		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
+     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
+        	}
+        	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
+        		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
+        	}
 	}
 
 	public void start(Stage primaryStage) throws Exception {
