@@ -30,7 +30,7 @@ public class LangtonsAnt extends Application {
 	
 	private double time = 0.0001;
 	
-	private int moves = 0;
+	private int Steps = 0;
 	
 	private Text text;
 	
@@ -82,7 +82,7 @@ public class LangtonsAnt extends Application {
 		        	YPos -= 10;
 		        	
 		        	moves++;
-		        	text.setText("Moves: " + Integer.toString(moves));
+		        	text.setText("Steps: " + Integer.toString(moves));
 		        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
@@ -105,7 +105,7 @@ public class LangtonsAnt extends Application {
 			        XPos += 10;
 			        	
 			        moves++;
-			        text.setText("Moves: " + Integer.toString(moves));
+			        text.setText("Steps: " + Integer.toString(moves));
 			        	
 			        if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 			    		allStop();
@@ -128,7 +128,7 @@ public class LangtonsAnt extends Application {
 		        	YPos += 10;
 			        	
 		        	moves++;
-		        	text.setText("Moves: " + Integer.toString(moves));
+		        	text.setText("Steps: " + Integer.toString(moves));
 			        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
@@ -151,7 +151,7 @@ public class LangtonsAnt extends Application {
 		        	XPos -= 10;
 				        	
 		        	moves++;
-		        	text.setText("Moves: " + Integer.toString(moves));
+		        	text.setText("Steps: " + Integer.toString(moves));
 				        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
