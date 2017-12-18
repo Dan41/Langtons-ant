@@ -86,7 +86,7 @@ public class LangtonsAnt extends Application {
 		        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
-		    		    goRight.play();
+		    		    	goRight.play();
 		    		}
 		    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
 		    			allStop();
@@ -132,7 +132,7 @@ public class LangtonsAnt extends Application {
 			        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
-		    		    goLeft.play();
+		    		    	goLeft.play();
 		    		}
 		    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
 		   			allStop();
@@ -155,7 +155,7 @@ public class LangtonsAnt extends Application {
 				        	
 		        	if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
 		    			allStop();
-		    		    goUp.play();
+		    		    	goUp.play();
 		    		}
 		    		else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
 			    		allStop();
@@ -204,7 +204,7 @@ public class LangtonsAnt extends Application {
 	
 	public void changeColor() {
 		if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(white)) {
-     		bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
+     			bg[XPos / 10][YPos / 10].rect.setFill(Color.BLACK);
         	}
         	else if (bg[XPos / 10][YPos / 10].rect.getFill().toString().equals(black)) {
         		bg[XPos / 10][YPos / 10].rect.setFill(Color.WHITE);
