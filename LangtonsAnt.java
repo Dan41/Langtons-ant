@@ -28,7 +28,7 @@ public class LangtonsAnt extends Application {
 	private String white = "0xffffffff";
 	private String black = "0x000000ff";
 	
-	private double time = 0.0001;
+	private double time = 0.00009;
 	
 	private int Steps = 0;
 	
