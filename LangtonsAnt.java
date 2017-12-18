@@ -69,7 +69,7 @@ public class LangtonsAnt extends Application {
 		
 		root.getChildren().add(ant);
 		
-		Text text = new Text("Moves: " + Integer.toString(moves));
+		Text text = new Text("Steps: " + Integer.toString(moves));
 		text.setLayoutX(30);
 		text.setLayoutY(40);
 		root.getChildren().add(text);
